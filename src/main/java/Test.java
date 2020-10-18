@@ -1,8 +1,6 @@
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.HashMap;
-import java.util.Map;
 
 public class Test {
     /*
@@ -27,15 +25,5 @@ public class Test {
         Jedis jedis = jedisPool.getResource();
         jedis.set("name", "Alex");
         System.out.println(jedis.get("name"));
-        /*
-        Map<String,String> cartInfo = new HashMap<>();
-        cartInfo.put("10088","1");
-        cartInfo.put("10099","2");
-        jedis.hset("cart:1001",cartInfo);
-        System.out.println(jedis.hget("cart:1001","10088"));
-        System.out.println(jedis.hget("cart:1001","10099"));
-        System.out.println(jedis.hgetAll("cart:1001"));
-         */
-
     }
 }

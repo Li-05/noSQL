@@ -1,16 +1,17 @@
 package com.bjtu.redis.controller;
 
-import com.bjtu.redis.JedisUtil;
+import com.bjtu.redis.tool.JedisUtil;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HelloWorld {
+public class UserController {
 
     //http://localhost:8080/in?name=ljc
     @RequestMapping("/in")
     public String comein(String name) {
         JedisUtil.comeIn(name);
+        System.out.println("count = "+ JedisUtil.getCount());
         return "Hello " + name;
     }
 
@@ -18,6 +19,7 @@ public class HelloWorld {
     @RequestMapping("/out")
     public String runout(String name){
         JedisUtil.runOut(name);
+        System.out.println("count = "+ JedisUtil.getCount());
         return "Bye "+ name;
     }
 }

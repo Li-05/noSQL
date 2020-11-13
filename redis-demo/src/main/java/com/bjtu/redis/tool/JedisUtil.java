@@ -1,5 +1,6 @@
-package com.bjtu.redis;
+package com.bjtu.redis.tool;
 
+import com.bjtu.redis.JedisInstance;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
@@ -21,6 +22,23 @@ public class JedisUtil {
         setDecr("count");
     }
 
+    /*
+    返回获取到的直播间内人数count
+     */
+    public static int getCount(){
+        Jedis jedis=null;
+        int ret=-1;
+        try{
+            jedis = jedisPool.getResource();
+            String s_ret = jedis.get("count");
+            ret=Integer.parseInt(s_ret);
+        }catch(Exception e){
+
+        }finally {
+            jedisPool.returnResource(jedis);
+        }
+        return ret;
+    }
 
     //自增
     public static long setIncr(String key) {
@@ -29,7 +47,6 @@ public class JedisUtil {
         try {
             jedis = jedisPool.getResource();
             result =jedis.incr(key);
-            System.out.println("set "+ key + " = " + result);
         } catch (Exception e) {
 
         } finally {
@@ -45,7 +62,6 @@ public class JedisUtil {
         try {
             jedis = jedisPool.getResource();
             result =jedis.decr(key);
-            System.out.println("set "+ key + " = " + result);
         } catch (Exception e) {
 
         } finally {

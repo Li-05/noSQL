@@ -1,0 +1,36 @@
+{
+  "actions": [
+    {
+      "actionname": "comeIn",
+      "actionIndex": 1,
+      "feature_retrieve":{
+        "counter": [
+          {"countname":"countnum" },
+          {"countname":"countset"}
+        ]
+      },
+      "save_counter": {
+        "counter": [
+          {"countname":"countnum" },
+          {"countname":"countset"}
+        ]
+      }
+    },
+    {
+      "actionname": "comeOut",
+      "actionIndex": 2,
+      "feature_retrieve": {
+        "counter": [
+          {"countname":"countnum" },
+          {"countname":"countset"}
+        ]
+      },
+      "save_counter": {
+        "counter": [
+          {"countname":"countnum" },
+          {"countname":"countset"}
+        ]
+      }
+    }
+  ]
+}

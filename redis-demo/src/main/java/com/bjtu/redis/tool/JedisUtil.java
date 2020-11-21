@@ -13,6 +13,7 @@ public class JedisUtil {
     public static void comeIn(String userName){
         setIncr("count");
         setIncr(userName+"count");
+        pushSet(userName);
     }
 
     /*
@@ -20,6 +21,7 @@ public class JedisUtil {
      */
     public static void runOut(String userName){
         setDecr("count");
+        popSet(userName);
     }
 
     /*
@@ -68,6 +70,22 @@ public class JedisUtil {
             jedisPool.returnResource(jedis);
         }
         return result;
+    }
+
+    public static void pushSet(String name){
+        Jedis jedis = null;
+        try{
+            jedis = jedisPool.getResource();
+            
+        }catch (Exception e){
+
+        }finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    public static void popSet(String name){
+
     }
 
 }

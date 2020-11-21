@@ -1,0 +1,18 @@
+{
+  "counters": [
+    {
+      "countername": "countnum",
+      "counterIndex": 1,
+      "type": "num",
+      "keyfields": "count",
+      "valuefields": "1"
+    },
+    {
+      "countername": "countset",
+      "counterIndex": 1,
+      "type": "set",
+      "keyfields": "personset",
+      "maxsize": 100
+    }
+  ]
+}

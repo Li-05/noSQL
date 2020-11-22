@@ -8,12 +8,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-public class JsonHelper {
+public class ActionJsonHelper {
 
-    ArrayList<String> readcounter;
-    ArrayList<String> writecounter;
+    private final ArrayList<String> readcounter;
+    private final ArrayList<String> writecounter;
 
-    public JsonHelper(String action) throws IOException {
+    public ActionJsonHelper(String action) throws IOException {
         readcounter = new ArrayList<String>();
         writecounter = new ArrayList<String>();
 
@@ -43,9 +43,13 @@ public class JsonHelper {
                 break;
             }
         }
-        System.out.println(readcounter);
-        System.out.println(writecounter);
-
     }
 
+    public ArrayList<String> getReadcounter() {
+        return readcounter;
+    }
+
+    public ArrayList<String> getWritecounter() {
+        return writecounter;
+    }
 }

@@ -69,12 +69,15 @@ public class DoAction {
                         Map<String,String> map = JedisUtil.getHashMap(counter.key);
                         Set<String> keys = map.keySet();
                         SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        int ret = 0;
                         for(String key:keys){
                             Date it = format2.parse(key);
                             if(it.after(from)&&it.before(to)){
-                                System.out.println(it);
+                                String value = map.get(key);
+                                ret+=Integer.parseInt(value);
                             }
                         }
+                        System.out.println("本时间段count一共增加了"+ret);
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }

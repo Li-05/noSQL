@@ -28,6 +28,24 @@
         "counter": [
         ]
       }
+    },
+
+    {
+      "actionname": "readfreq",
+      "actionIndex": 3,
+      "feature_retrieve": {
+        "counter": [
+          {"countname":"counthash" }
+        ]
+      },
+      "save_counter": {
+        "counter": [
+        ]
+      }
+
+
     }
+
+
   ]
 }

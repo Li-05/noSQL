@@ -3,6 +3,8 @@ package com.bjtu.redis.jedis;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.Map;
+
 public class JedisUtil {
     private static JedisPool jedisPool = JedisInstance.getInstance();
 
@@ -31,5 +33,33 @@ public class JedisUtil {
         }
         return ret;
     }
+
+    public static void setHashPush(String key,String field,String value){
+        Jedis jedis = null;
+
+        try {
+            jedis = jedisPool.getResource();
+            jedis.hset(key, field, value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    public static Map<String,String> getHashMap(String key){
+        Jedis jedis = null;
+        Map<String,String> ret = null;
+        try {
+            jedis = jedisPool.getResource();
+            ret = jedis.hgetAll(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+        return ret;
+    }
+
 
 }

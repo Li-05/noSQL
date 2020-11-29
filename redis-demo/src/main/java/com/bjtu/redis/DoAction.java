@@ -6,7 +6,10 @@ import com.bjtu.redis.jedis.JedisUtil;
 import com.bjtu.redis.jsonhelpers.ActionJsonHelper;
 import com.bjtu.redis.jsonhelpers.CounterJsonHelper;
 
-import java.util.ArrayList;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class DoAction {
 
@@ -50,7 +53,31 @@ public class DoAction {
                     System.out.println("The Value Of "+counter.key+" Is "+JedisUtil.getValueNum(counter.key));
                     break;
                 case "hash":
-                    //System.out.println("暂未实现hash读取");
+                    SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH");
+                    System.out.print("begin time>>");
+                    Scanner ms = new Scanner(System.in);
+                    String begin = ms.nextLine();
+                    System.out.print("end time>>");
+                    Scanner ms2 = new Scanner(System.in);
+                    String end = ms2.nextLine();
+
+                    try {
+                        Date from = format.parse(begin);
+                        Date to = format.parse(end);
+
+                        //得到time-valueField的哈希表
+                        Map<String,String> map = JedisUtil.getHashMap(counter.key);
+                        Set<String> keys = map.keySet();
+                        SimpleDateFormat format2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        for(String key:keys){
+                            Date it = format2.parse(key);
+                            if(it.after(from)&&it.before(to)){
+                                System.out.println(it);
+                            }
+                        }
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
                     break;
                 default:
                     break;
@@ -63,7 +90,10 @@ public class DoAction {
                     JedisUtil.setIncrNum(counter.key,counter.valueField);
                     break;
                 case "hash":
-                    //System.out.println("暂未实现hash写入");
+                    //时间戳
+                    //存储结构：keyField-time-valueField
+                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    JedisUtil.setHashPush(counter.key,timestamp.toString(),counter.valueField+"");
                     break;
                 default:
                     break;

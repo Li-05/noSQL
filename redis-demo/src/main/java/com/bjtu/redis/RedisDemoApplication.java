@@ -25,26 +25,32 @@ public class RedisDemoApplication {
         int num=1;
         while(true) {
             System.out.println(num+ ". Please Choose Your Next Action:");
-            System.out.println("\t A. 增加count \t B. 读出count值");
+            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq");
             System.out.print("choice>>");
             Scanner ms = new Scanner(System.in);
             String ch = ms.nextLine();
-            if(!ch.equals("A")&&!ch.equals("B")){
-                System.out.println("\t 输入格式错误，请输入A或B！");
+            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")){
+                System.out.println("\t 输入格式错误，请输入A或B或C！");
             }else{
                 //输入正确，执行action
                 switch (ch){
                     case "A":
-                        System.out.println("Action执行pluscount");
+                        System.out.println("Action执行Action:pluscount");
                         ActionJsonHelper jsh1 = new ActionJsonHelper(new Action("pluscount"));
                         DoAction da1 = new DoAction(jsh1);
                         da1.Do();
                         break;
                     case "B":
-                        System.out.println("Action执行readcount");
+                        System.out.println("Action执行Action:readcount");
                         ActionJsonHelper jsh2 = new ActionJsonHelper(new Action("readcount"));
                         DoAction da2 = new DoAction(jsh2);
                         da2.Do();
+                        break;
+                    case "C":
+                        System.out.println("Action执行Action:readfreq");
+                        ActionJsonHelper jsh3 = new ActionJsonHelper(new Action("readfreq"));
+                        DoAction da3 = new DoAction(jsh3);
+                        da3.Do();
                         break;
                     default:
                         break;

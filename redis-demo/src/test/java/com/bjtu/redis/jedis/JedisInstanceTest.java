@@ -2,8 +2,6 @@ package com.bjtu.redis.jedis;
 
 import org.junit.Test;
 
-import com.bjtu.redis.tool.JedisInstance;
-
 import redis.clients.jedis.Jedis;
 
 public class JedisInstanceTest {

@@ -1,4 +1,4 @@
-package com.bjtu.redis.tool;
+package com.bjtu.redis.jedis;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;

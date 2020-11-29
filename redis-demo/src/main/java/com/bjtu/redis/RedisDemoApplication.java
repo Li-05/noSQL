@@ -1,7 +1,11 @@
 package com.bjtu.redis;
 
+import com.bjtu.redis.actions.Action;
+import com.bjtu.redis.jsonhelpers.ActionJsonHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import java.util.Scanner;
 
 /**
  *  SpringBootApplication
@@ -16,6 +20,52 @@ public class RedisDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RedisDemoApplication.class, args);
+        System.out.println("****** Welcome To My Redis Homework ******");
+
+        int num=1;
+        while(true) {
+            System.out.println(num+ ". Please Choose Your Next Action:");
+            System.out.println("\t A. 增加count \t B. 读出count值");
+            System.out.print("choice>>");
+            Scanner ms = new Scanner(System.in);
+            String ch = ms.nextLine();
+            if(!ch.equals("A")&&!ch.equals("B")){
+                System.out.println("\t 输入格式错误，请输入A或B！");
+            }else{
+                //输入正确，执行action
+                switch (ch){
+                    case "A":
+                        System.out.println("Action执行pluscount");
+                        ActionJsonHelper jsh1 = new ActionJsonHelper(new Action("pluscount"));
+                        DoAction da1 = new DoAction(jsh1);
+                        da1.Do();
+                        break;
+                    case "B":
+                        System.out.println("Action执行readcount");
+                        ActionJsonHelper jsh2 = new ActionJsonHelper(new Action("readcount"));
+                        DoAction da2 = new DoAction(jsh2);
+                        da2.Do();
+                        break;
+                    default:
+                        break;
+                }
+
+            }
+
+            System.out.println("Do You Wanna Exit?");
+            System.out.println("\t A. yes \t B. no");
+            System.out.print("choice>>");
+            Scanner sc = new Scanner(System.in);
+            String ex = ms.nextLine();
+            if(ex.equals("yes")||ex.equals("YES")||ex.equals("A")){
+                break;
+            }
+            num++;
+            System.out.println("**************************************");
+        }
+
+        System.out.println("****** Thanks For Your Using ! Bye~ ******");
+
     }
 }
 

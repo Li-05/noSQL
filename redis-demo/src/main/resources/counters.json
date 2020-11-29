@@ -5,14 +5,13 @@
       "counterIndex": 1,
       "type": "num",
       "keyfields": "count",
-      "valuefields": "1"
+      "valuefields": 2
     },
     {
-      "countername": "countset",
-      "counterIndex": 1,
-      "type": "set",
-      "keyfields": "personset",
-      "maxsize": 100
+      "countername": "counthash",
+      "counterIndex": 2,
+      "type": "hash",
+      "keyfields": "counthash"
     }
   ]
 }

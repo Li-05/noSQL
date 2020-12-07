@@ -3,6 +3,8 @@ package com.bjtu.redis.jedis;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class JedisUtil {
@@ -61,5 +63,30 @@ public class JedisUtil {
         return ret;
     }
 
+    public static void writeList(String key,String value){
+        Jedis jedis = null;
+        try{
+            jedis = jedisPool.getResource();
+            jedis.rpush(key,value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    public static List<String> getArray(String key){
+        Jedis jedis = null;
+        List<String> ret = null;
+        try{
+            jedis = jedisPool.getResource();
+            ret = jedis.lrange(key, 0, -1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+        return ret;
+    }
 
 }

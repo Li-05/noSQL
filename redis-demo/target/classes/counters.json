@@ -13,6 +13,13 @@
       "type": "hash",
       "keyfields": "counthash",
       "valuefields": 1
+    },
+    {
+      "countername": "countlog",
+      "counterIndex": 3,
+      "type": "list",
+      "keyfields": "countlist",
+      "valuefields": 1
     }
   ]
 }

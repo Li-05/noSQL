@@ -6,6 +6,7 @@ import com.bjtu.redis.jedis.JedisUtil;
 import com.bjtu.redis.jsonhelpers.ActionJsonHelper;
 import com.bjtu.redis.jsonhelpers.CounterJsonHelper;
 
+import java.sql.Array;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -82,7 +83,14 @@ public class DoAction {
                             e.printStackTrace();
                         }
                     break;
+                case "list":
+                    List<String> log = JedisUtil.getArray(counter.key);
+                    for(String s:log){
+                        System.out.println(s);
+                    }
+                    break;
                 default:
+                    System.out.println(counter);
                     break;
             }
         }
@@ -98,7 +106,14 @@ public class DoAction {
                     Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                     JedisUtil.setHashPush(counter.key,timestamp.toString(),counter.valueField+"");
                     break;
+                case "list":
+                    String time = new Timestamp(System.currentTimeMillis()).toString();
+                    int value = counter.valueField;
+                    String write = "The counter increase "+value+" at "+time;
+                    JedisUtil.writeList(counter.key,write);
+                    break;
                 default:
+                    System.out.println(counter);
                     break;
             }
         }

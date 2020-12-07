@@ -25,12 +25,12 @@ public class RedisDemoApplication {
         int num=1;
         while(true) {
             System.out.println(num+ ". Please Choose Your Next Action:");
-            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq");
+            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.读取log ");
             System.out.print("choice>>");
             Scanner ms = new Scanner(System.in);
             String ch = ms.nextLine();
-            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")){
-                System.out.println("\t 输入格式错误，请输入A或B或C！");
+            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")){
+                System.out.println("\t 输入格式错误，请输入A或B或C或D！");
             }else{
                 //输入正确，执行action
                 switch (ch){
@@ -51,6 +51,12 @@ public class RedisDemoApplication {
                         ActionJsonHelper jsh3 = new ActionJsonHelper(new Action("readfreq"));
                         DoAction da3 = new DoAction(jsh3);
                         da3.Do();
+                        break;
+                    case "D":
+                        System.out.println("Action执行Action:readlog");
+                        ActionJsonHelper jsh4 = new ActionJsonHelper(new Action("readlog"));
+                        DoAction da4 = new DoAction(jsh4);
+                        da4.Do();
                         break;
                     default:
                         break;

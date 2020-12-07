@@ -10,7 +10,8 @@
       "save_counter": {
         "counter": [
           {"countname":"countnum" },
-          {"countname":"counthash"}
+          {"countname":"counthash"},
+          {"countname":"countlog"}
         ]
       }
     },
@@ -44,8 +45,20 @@
       }
 
 
+    },
+
+    {
+      "actionname": "readlog",
+      "actionIndex": 4,
+      "feature_retrieve": {
+        "counter": [
+          {"countname":"countlog" }
+        ]
+      },
+      "save_counter": {
+        "counter": [
+        ]
+      }
     }
-
-
   ]
 }

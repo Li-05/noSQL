@@ -59,6 +59,20 @@
         "counter": [
         ]
       }
+    },
+    {
+      "actionname": "readSTR",
+      "actionIndex": 5,
+      "feature_retrieve": {
+        "counter": [
+          {"countname":"str" }
+        ]
+      },
+      "save_counter": {
+        "counter": [
+        ]
+      }
     }
+
   ]
 }

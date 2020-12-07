@@ -89,4 +89,15 @@ public class JedisUtil {
         return ret;
     }
 
+    public static void setStr (String key,String value){
+        Jedis jedis = null;
+        try{
+            jedis = jedisPool.getResource();
+            jedis.set(key,value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
 }

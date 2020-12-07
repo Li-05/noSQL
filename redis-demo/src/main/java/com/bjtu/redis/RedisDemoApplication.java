@@ -1,6 +1,7 @@
 package com.bjtu.redis;
 
 import com.bjtu.redis.actions.Action;
+import com.bjtu.redis.jedis.JedisUtil;
 import com.bjtu.redis.jsonhelpers.ActionJsonHelper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,17 +21,18 @@ public class RedisDemoApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(RedisDemoApplication.class, args);
+        initStr();
         System.out.println("****** Welcome To My Redis Homework ******");
 
         int num=1;
         while(true) {
             System.out.println(num+ ". Please Choose Your Next Action:");
-            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.读取log ");
+            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.读取log \t E.项目介绍");
             System.out.print("choice>>");
             Scanner ms = new Scanner(System.in);
             String ch = ms.nextLine();
-            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")){
-                System.out.println("\t 输入格式错误，请输入A或B或C或D！");
+            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")&&!ch.equals("E")){
+                System.out.println("\t 输入格式错误，请输入A或B或C或D或E！");
             }else{
                 //输入正确，执行action
                 switch (ch){
@@ -58,6 +60,12 @@ public class RedisDemoApplication {
                         DoAction da4 = new DoAction(jsh4);
                         da4.Do();
                         break;
+                    case "E":
+                        System.out.println("Action执行Action:readSTR");
+                        ActionJsonHelper jsh5 = new ActionJsonHelper(new Action("readSTR"));
+                        DoAction da5 = new DoAction(jsh5);
+                        da5.Do();
+                        break;
                     default:
                         break;
                 }
@@ -78,6 +86,18 @@ public class RedisDemoApplication {
 
         System.out.println("****** Thanks For Your Using ! Bye~ ******");
 
+    }
+
+
+    private static void initStr(){
+        String str = "*****************************************************\n" +
+                "使用key-String的incr方式实现累加counter\n" +
+                "使用key-String的get方式获取counter数值和简介\n" +
+                "使用key-String的set方式设置STR\n" +
+                "使用key-Hash，使用key-hash方式实现freq\n" +
+                "使用key-list，利用先进先出实现log\n" +
+                "*****************************************************";
+        JedisUtil.setStr("str",str);
     }
 }
 

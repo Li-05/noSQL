@@ -89,6 +89,9 @@ public class DoAction {
                         System.out.println(s);
                     }
                     break;
+                case "str":
+                    System.out.println(JedisUtil.getValueNum(counter.key));
+                    break;
                 default:
                     System.out.println(counter);
                     break;

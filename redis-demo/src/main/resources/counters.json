@@ -26,6 +26,12 @@
       "counterIndex": 4,
       "type": "str",
       "keyfields": "str"
+    },
+    {
+      "countername": "countSet",
+      "counterIndex": 5,
+      "type": "set",
+      "keyfields": "countSet"
     }
 
   ]

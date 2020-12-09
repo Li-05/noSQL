@@ -27,12 +27,12 @@ public class RedisDemoApplication {
         int num=1;
         while(true) {
             System.out.println(num+ ". Please Choose Your Next Action:");
-            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.读取log \t E.项目介绍");
+            System.out.println("\t A. 增加count \t B. 读出count值 \t C.读取freq \t D.读取log \t E.项目介绍 \t F.获取所有count增加的非重复时间戳");
             System.out.print("choice>>");
             Scanner ms = new Scanner(System.in);
             String ch = ms.nextLine();
-            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")&&!ch.equals("E")){
-                System.out.println("\t 输入格式错误，请输入A或B或C或D或E！");
+            if(!ch.equals("A")&&!ch.equals("B")&&!ch.equals("C")&&!ch.equals("D")&&!ch.equals("E")&&!ch.equals("F")){
+                System.out.println("\t 输入格式错误，请输入A或B或C或D或E或F！");
             }else{
                 //输入正确，执行action
                 switch (ch){
@@ -66,6 +66,12 @@ public class RedisDemoApplication {
                         DoAction da5 = new DoAction(jsh5);
                         da5.Do();
                         break;
+                    case "F":
+                        System.out.println("Action执行Action:readSet");
+                        ActionJsonHelper jsh6 = new ActionJsonHelper(new Action("readSet"));
+                        DoAction da6 = new DoAction(jsh6);
+                        da6.Do();
+                        break;
                     default:
                         break;
                 }
@@ -96,6 +102,7 @@ public class RedisDemoApplication {
                 "使用key-String的set方式设置STR\n" +
                 "使用key-Hash，使用key-hash方式实现freq\n" +
                 "使用key-list，利用先进先出实现log\n" +
+                "使用key-Set，利用集合的去重，获取counter所有操作的不重复时间点\n" +
                 "*****************************************************";
         JedisUtil.setStr("str",str);
     }

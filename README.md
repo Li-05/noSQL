@@ -26,5 +26,12 @@ counter自增、自减，重构
 实现read counter操作
 ## 11.27
 使用哈希实现freq的读取
-##12.4
-Bigtable
+## 11.29
+Bigtable读后感
+## 12.4
+Google File System读后感
+## 12.6
+Jedis-list封装
+实现STR
+## 12.9
+Jedis-Set封装

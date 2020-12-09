@@ -3,9 +3,7 @@ package com.bjtu.redis.jedis;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class JedisUtil {
     private static JedisPool jedisPool = JedisInstance.getInstance();
@@ -100,4 +98,31 @@ public class JedisUtil {
             jedisPool.returnResource(jedis);
         }
     }
+
+    public static void addSet(String key,String value){
+        Jedis jedis = null;
+        try{
+            jedis = jedisPool.getResource();
+            jedis.sadd(key,value);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+    }
+
+    public static Set<String> getSet(String key){
+        Set<String> ret = null;
+        Jedis jedis = null;
+        try{
+            jedis = jedisPool.getResource();
+            ret = jedis.smembers(key);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            jedisPool.returnResource(jedis);
+        }
+        return ret;
+    }
+
 }

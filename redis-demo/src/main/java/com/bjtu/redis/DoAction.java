@@ -92,6 +92,12 @@ public class DoAction {
                 case "str":
                     System.out.println(JedisUtil.getValueNum(counter.key));
                     break;
+                case "set":
+                    Set<String> times = JedisUtil.getSet(counter.key);
+                    for(String time : times){
+                        System.out.println(time);
+                    }
+                    break;
                 default:
                     System.out.println(counter);
                     break;
@@ -114,6 +120,10 @@ public class DoAction {
                     int value = counter.valueField;
                     String write = "The counter increase "+value+" at "+time;
                     JedisUtil.writeList(counter.key,write);
+                    break;
+                case "set":
+                    String time2 = new Timestamp(System.currentTimeMillis()).toString();
+                    JedisUtil.addSet(counter.key,time2);
                     break;
                 default:
                     System.out.println(counter);
